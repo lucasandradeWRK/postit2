@@ -1,6 +1,4 @@
-
 import java.util.ArrayList;
-
 public class Sistema implements User{
 	
 	private ArrayList<Post_it> postit = new ArrayList<Post_it>();
@@ -9,11 +7,11 @@ public class Sistema implements User{
 	
 	public void arquivar(Post_it postit){
 		this.postit.remove(postit);
-		this.arquivados.add(postit);
+		this.arquivado.add(postit);
 	}
 
 	
-	public Post_simp criarsimp() {
+	public Post_simp criarSimp() {
 		Post_simp postsimp;
 		postsimp= new Post_simp("Café" ,"tomar café com os amigos", "café");
 		
@@ -23,51 +21,50 @@ public class Sistema implements User{
 	}
 
 	
-	public Post_taf criartarefa() {
-		Post_taf postaf;
-		postaf= new Post_taf("Livro de açăo", "Lembrar de Ler", "8min");
+	public Post_tarefa criarTarefa() {
+		Post_tarefa postarefa;
+		postarefa= new Post_tarefa("Tomar Café", "Se reunir na cafeteria", "30m");
 		
-		postits.add(postaf);
+		postit.add(postarefa);
 		
-		return postaf;
+		return postarefa;
 	}
 
-	public void ver_arq() {
-		for(int i = 0; i < arquivados.size(); i++) {
-			Post_it postit = arquivados.get(i);
-			System.out.println("===============");
-			System.out.println("Descriçăo do Post it: " + postit.getDescricao());
-			System.out.println("Tags: " + postit.getTags());
+	public void ver_arquivados() {
+		for(int c = 0; c < arquivado.size(); c++) {
+			Post_it postit = arquivado.get(c);
+			System.out.println("titulo-->" + postit.gettitulo());
+			System.out.println("Descriçăo-->" + postit.getdescricao());
+			System.out.println("Tag-->" + postit.gettags());
 		}
 	}
 
-	public void buscar(String tag) throws Exception {
-		int postitsComTag = 0;
+	public void buscar(String tag){
+		int resultados = 0;
 		
-		for(int i = 0; i < postits.size(); i++) {
-			Post_it postit = postits.get(i);
+		for(int rs = 0; rs < postit.size(); rs++) {
+			Post_it postit = postit.get(rs);
 
-			if(postit.getTags().contains(tag)) {
-				postitsComTag++;
-				
-				System.out.println("===============");
-				System.out.println("Descriçăo do Post it: " + postit.getDescricao());
-				System.out.println("Tags: " + postit.getTags());
+			if(postit.gettag().contains(tag)/*"vefifica se a tag está dentro do array"*/) {
+				resultados = resultados+1;
+				System.out.println("titulo-->" + postit.gettitulo())
+				System.out.println("Descriçăo--> " + postit.getdescricao());
+				System.out.println("Tag-->" + postit.gettag());
 			}
 		}
 		
 		if(postitsComTag == 0) {
-			throw new Exception("Năo há nenhum Post it com a tag informada.");
+			System.out.println("Năo há nenhum Post it com a tag informada.");
 		}
 	}
 
 	
 	public void visualizar() {
-		for(int i = 0; i < postits.size(); i++) {
-			Post_it postit = postits.get(i);
-			System.out.println("===============");
-			System.out.println("Descriçăo do Post it: " + postit.getDescricao());
-			System.out.println("Tags: " + postit.getTags());
+		for(int rs = 0; rs < postit.size(); rs++) {
+			Post_it postit = postit.get(rs);
+			System.out.println("titulo-->" + postit.gettitulo())
+			System.out.println("Descriçăo-->" + postit.getdescricao());
+			System.out.println("Tag-->: " + postit.gettags());
 		}
 	}
 
